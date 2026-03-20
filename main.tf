@@ -177,7 +177,7 @@ resource "aws_autoscaling_policy" "main" {
 # This depends on target group
 resource "aws_lb_listener_rule" "main" {
   listener_arn = local.listener_arn
-  priority     = 10
+  priority     = var.rule_priority
 
   action {
     type             = "forward"

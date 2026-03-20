@@ -21,3 +21,7 @@ variable "domain_name" {
     type=string
     default = "jaswanthdevops.online"
 }
+
+variable "rule_priority" {
+    type = number
+}
