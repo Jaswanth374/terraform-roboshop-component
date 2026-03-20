@@ -12,8 +12,9 @@ locals {
     sg_id = data.aws_ssm_parameter.sg_id.value
     vpc_id = data.aws_ssm_parameter.vpc_id.value
     backend_alb_listener_arn = data.aws_ssm_parameter.backend_alb_listener_arn.value
+    
     port_number = var.component == "frontend" ? 80 : 8080
     path = var.component == "frontend" ? "/" : "/health"
-    listener_arn = var.component == "frontend" ? "data.aws_ssm_parameter.frontend_alb_listener_arn.value" : "data.aws_ssm_parameter.backend_alb_listener_arn.value"
+    listener_arn = var.component == "frontend" ? data.aws_ssm_parameter.frontend_alb_listener_arn.value : data.aws_ssm_parameter.backend_alb_listener_arn.value
     host_header = var.component == "frontend" ? "${var.component}-${var.environment}.${var.domain_name}" : "${var.component}.backend-alb-${var.environment}.${var.domain_name}"
 }
